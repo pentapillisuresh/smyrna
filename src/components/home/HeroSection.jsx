@@ -8,6 +8,13 @@ const HeroSection = () => {
   const [animationKey, setAnimationKey] = useState(0);
   
   const bannerImages = [
+     {
+      url: '/images/hr.jpg',
+      alt: 'Human Resources',
+      title: 'Human Resources',
+      description: 'Leading People, Leading Organizations',
+      features: ['Training', 'Talent', 'Planning']
+    },
     {
       url: '/images/payroll.jpg',
       alt: 'Payroll Services',
@@ -15,13 +22,7 @@ const HeroSection = () => {
       description: 'Payroll, ESS, HR Audit, Attendance, Leave, Reports',
       features: ['Payroll', 'ESS', 'Audit']
     },
-    {
-      url: '/images/hr.jpg',
-      alt: 'Human Resources',
-      title: 'Human Resources',
-      description: 'Leading People, Leading Organizations',
-      features: ['Training', 'Talent', 'Planning']
-    },
+   
     {
       url: '/images/pf.jpg',
       alt: 'Labour Laws',
