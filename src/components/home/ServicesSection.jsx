@@ -81,7 +81,7 @@ const ServicesSection = () => {
   };
 
   const handleReadMore = (serviceTitle) => {
-    navigate(`/services/${serviceTitle.toLowerCase().replace(/\s+/g, '-')}`);
+    navigate('/services');
   };
 
   return (
