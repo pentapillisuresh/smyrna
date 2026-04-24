@@ -3,15 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { 
-  FaBalanceScale, 
+  FaFileContract, 
   FaClipboardCheck, 
+  FaBalanceScale, 
+  FaGavel, 
   FaUsers, 
-  FaCalculator, 
-  FaHandshake, 
-  FaFileContract 
+  FaHandshake 
 } from 'react-icons/fa';
 import { HiArrowRight } from 'react-icons/hi';
-import SectionTitle from '../common/SectionTitle';
 
 const ServicesSection = () => {
   const navigate = useNavigate();
@@ -27,53 +26,47 @@ const ServicesSection = () => {
 
   const services = [
     {
-      icon: FaBalanceScale,
-      title: 'Labour Laws',
-      description:
-        'The complex layered structure of the Indian statutory laws is not only time consuming, but also requires a disciplined approach to organise, prepare & file the monthly reports & documents with the respective agencies. Our experience will help you in maintaining compliance to these statutory laws.',
-      bgImage: "./images/labor.jpg",
+      icon: FaFileContract,
+      title: 'Registration & Licensing Services',
+      description: 'Turnkey solutions for all statutory registrations including Shop & Establishment, Professional Tax, Trade License, FSSAI, Factory License, Pollution License, Drug License, CLRA, BOCW, and all other mandatory licenses with periodic renewals and amendments.',
+      bgImage: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&h=600&fit=crop',
       aosDelay: 0
     },
     {
       icon: FaClipboardCheck,
-      title: 'Audit Services',
-      description:
-        'In today\'s highly communicated & interconnected world, cent percent compliance is definitely preferable over possibilities of penalties, labour disputes & arbitrations. Our robust audit process & tools ascertain a thorough scan of all statutory compliances to be followed by the Principal Employer, the Labour Contractors & the Partners.',
-      bgImage: './images/audit.avif',
+      title: 'Statutory Compliance Management',
+      description: 'End-to-end compliance management under Shops & Establishment Act, Contract Labour Act, BOCW Act, Factories Act, PF Act, ESI Act, Labour Welfare Fund Act, and all other labour legislations. We handle registrations, renewals, returns filing, and maintenance of statutory registers.',
+      bgImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop',
       aosDelay: 100
     },
     {
-      icon: FaUsers,
-      title: 'HR Solutions',
-      description:
-        'Our outsourcing service is fully tailored to your needs, to support the delivery of your strategic HR agenda and organisational objectives. We provide an experienced on-site HR team delivering the full range of HR services, as well as access to our wider team of expertise.',
-      bgImage: './images/hr1.avif',
+      icon: FaBalanceScale,
+      title: 'Labour Law Audit & Due Diligence',
+      description: 'Comprehensive audit services covering monthly, quarterly, half-yearly or yearly compliance checks. We conduct internal audits, prepare detailed audit reports, recommend corrective measures, and provide actionable insights to improve compliance health for Principal Employer and Contractors.',
+      bgImage: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&h=600&fit=crop',
       aosDelay: 200
     },
     {
-      icon: FaCalculator,
-      title: 'Payroll Management',
-      description:
-        'Our payroll management services are very flexible and can be customised to meet the needs of small, medium and large enterprises. Cost-centre reports, online & offline payslips and MIS reports are all generated and managed through our proprietary software.',
-      bgImage: './images/payroll1.jpg',
+      icon: FaGavel,
+      title: 'Labour Law Advisory & Consulting',
+      description: 'Expert legal advisory on labour enactments, display of abstracts, periodical returns filing, register maintenance, attending labour officer visits, updating management on latest amendments, circulars & notifications, and creating monthly compliance trackers.',
+      bgImage: 'https://images.unsplash.com/photo-1589391886645-d1b6d1c1e6e0?w=800&h=600&fit=crop',
       aosDelay: 0
     },
     {
-      icon: FaHandshake,
-      title: 'Contract Staffing',
-      description:
-        'Our personalized contract staffing / temp staffing solutions facilitate our clients in reducing HR operating costs, thereby enabling them to focus on core business areas. Great emphasis is laid on the structure and design of the solutions offered to ensure that the requirements of the clients in terms of sourcing the right candidates across India are met within the expected time frames.',
-      bgImage: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=2070&auto=format&fit=crop',
+      icon: FaUsers,
+      title: 'HR & Payroll Management',
+      description: 'Complete HR solutions including HR audit, policy implementation, HR systems establishment, HRMS & Payroll Software. Monthly preparation of PF & ESIC statements, challan generation, returns filing, and government liaison with cost-centre reports and MIS reports.',
+      bgImage: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop',
       aosDelay: 100
     },
     {
-      icon: FaFileContract,
-      title: 'Licensing',
-      description:
-        'We provide turnkey solutions for all licence work pertaining to business operations. We render these services to facilitate the entire process of registrations with all concerned authorities viz. Central Government Agencies, State Government Agencies & local Municipal Agencies.',
-      bgImage: './images/licence.avif',
+      icon: FaHandshake,
+      title: 'Government Liaison & Representation',
+      description: 'Expert representation before Labour, PF, ESI authorities and Labour Courts. Handling labour department inspections, minimum wages cases, union strikes, and all statutory related notices. Liaison with Factories, Labour, ESIC and PF authorities successfully.',
+      bgImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
       aosDelay: 200
-    },
+    }
   ];
 
   const handleViewAllServices = () => {
@@ -94,11 +87,11 @@ const ServicesSection = () => {
           data-aos-duration="800"
         >
           <span className="text-orange-600 font-semibold text-sm uppercase tracking-wider">What We Offer</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Comprehensive Business Solutions</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">Please check the services we offer to our valuable clients</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Comprehensive Compliance & Legal Solutions</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">Since 2008, providing quality services, ethics, professionalism and credibility to Hotel Industry, Retail Industry, Manufacturing Industries & ITES Companies</p>
         </div>
 
-        {/* Services Grid */}
+        {/* Services Grid - Exactly 6 items */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => {
             const Icon = service.icon;
@@ -123,8 +116,8 @@ const ServicesSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="relative z-10 p-6 bg-white group-hover:bg-transparent transition-all duration-500 h-full">
-                  {/* Icon with AOS */}
+                <div className="relative z-10 p-6 bg-white group-hover:bg-transparent transition-all duration-500 h-full min-h-[280px]">
+                  {/* Icon */}
                   <div 
                     className="w-14 h-14 rounded-full bg-orange-500 flex items-center justify-center mb-5 group-hover:bg-white transition-all duration-300"
                     data-aos="zoom-in"
@@ -134,7 +127,7 @@ const ServicesSection = () => {
                     <Icon className="text-2xl text-white group-hover:text-orange-500 transition-colors duration-300" />
                   </div>
 
-                  {/* Title with AOS */}
+                  {/* Title */}
                   <h3 
                     className="text-xl font-bold text-gray-800 mb-3 group-hover:text-white transition-colors duration-300"
                     data-aos="fade-right"
@@ -144,14 +137,14 @@ const ServicesSection = () => {
                     {service.title}
                   </h3>
 
-                  {/* Description with AOS */}
+                  {/* Description */}
                   <p 
-                    className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-100 transition-colors duration-300"
+                    className="text-gray-600 text-sm leading-relaxed group-hover:text-gray-100 transition-colors duration-300 line-clamp-4"
                     data-aos="fade-left"
                     data-aos-delay={service.aosDelay + 300}
                     data-aos-duration="500"
                   >
-                    {service.description.substring(0, 120)}...
+                    {service.description}
                   </p>
 
                   {/* Divider */}
@@ -191,7 +184,7 @@ const ServicesSection = () => {
         </div>
       </div>
 
-      {/* Additional styles for AOS customizations */}
+      {/* Additional styles for AOS customizations and line clamp */}
       <style jsx>{`
         /* Custom AOS animations override */
         [data-aos="fade-up"] {
@@ -217,6 +210,19 @@ const ServicesSection = () => {
         /* Smooth scrolling */
         html {
           scroll-behavior: smooth;
+        }
+        
+        /* Line clamp for description */
+        .line-clamp-4 {
+          display: -webkit-box;
+          -webkit-line-clamp: 4;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        
+        /* Minimum height for card content */
+        .min-h-280 {
+          min-height: 280px;
         }
       `}</style>
     </section>

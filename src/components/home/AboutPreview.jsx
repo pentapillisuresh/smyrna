@@ -3,7 +3,6 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { HiCheckCircle, HiArrowRight } from 'react-icons/hi';
 import { FaUsers, FaTrophy, FaHandshake, FaChartLine, FaShieldAlt, FaClock } from 'react-icons/fa';
-import SectionTitle from '../common/SectionTitle';
 
 const AboutPreview = () => {
   useEffect(() => {
@@ -23,13 +22,13 @@ const AboutPreview = () => {
     },
     {
       icon: FaUsers,
-      title: '50+ Experts',
+      title: '10+ Experts',
       description: 'Dedicated Team',
       color: 'orange'
     },
     {
       icon: FaHandshake,
-      title: '500+ Clients',
+      title: '70+ Clients',
       description: 'Trusted Partners',
       color: 'orange'
     }
@@ -39,17 +38,17 @@ const AboutPreview = () => {
     {
       icon: FaShieldAlt,
       title: 'Integrity',
-      description: 'Unwavering commitment to ethical practices'
+      description: 'Ethical practices'
     },
     {
       icon: FaChartLine,
-      title: 'Innovation',
-      description: 'Cutting-edge compliance solutions'
+      title: 'Excellence',
+      description: 'Quality service'
     },
     {
       icon: FaClock,
       title: 'Reliability',
-      description: '24/7 dedicated support'
+      description: 'On-time delivery'
     }
   ];
 
@@ -74,32 +73,30 @@ const AboutPreview = () => {
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
               Your Strategic Partner in <br />
               <span className="text-orange-600 relative inline-block">
-                Business Compliance
+                Statutory Compliance
                 <svg className="absolute bottom-2 left-0 w-full h-3 text-orange-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 50 10, 100 5" stroke="currentColor" fill="none" strokeWidth="2" />
+                
                 </svg>
               </span>
             </h2>
             
             <p className="text-gray-600 text-lg mb-5 leading-relaxed">
-              With over <span className="font-bold text-orange-600">15 years of expertise</span> in statutory compliance and business solutions, 
-              Smyrna Consultancy has established itself as a trusted partner for businesses 
-              navigating India's complex regulatory landscape.
+              Since <span className="font-bold text-orange-600">2008</span>, Smyrna Consulting Solutions has been providing 
+              quality compliance, legal consultancy, statutory audit & HR audit services.
             </p>
             
             <p className="text-gray-500 mb-8 leading-relaxed border-l-4 border-orange-500 pl-4 italic">
-              Our comprehensive approach combines deep industry knowledge with innovative 
-              solutions, ensuring your business remains compliant while focusing on growth 
-              and operational excellence.
+              We are an association of experienced HR Managers, Advocates, Legal consultants 
+              and qualified professionals with rich expertise in Labour Laws & Statutory Compliance.
             </p>
 
             {/* Feature List - Premium styling */}
             <div className="space-y-3 mb-8">
               {[
-                'Pan-India Presence with local expertise',
-                'Customized Solutions for every business',
-                'Proactive Compliance monitoring',
-                'Technology-Driven Approach for efficiency'
+                'Pan-India Presence across 5 states',
+                'Expert Team of Legal Professionals',
+                'Proactive Compliance Monitoring',
+                'Trusted by 70+ Prestigious Clients'
               ].map((feature, idx) => (
                 <div key={idx} className="flex items-center gap-3 group transform transition-all duration-300 hover:translate-x-2">
                   <div className="w-6 h-6 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center flex-shrink-0 shadow-md">
@@ -118,23 +115,21 @@ const AboutPreview = () => {
 
           {/* Right Content - Full Image with Premium Design */}
           <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-            {/* Main Image - Full display without circles */}
-          <div 
-  className="flex justify-center items-center"
-  data-aos="fade-right"
->
-  <div className="w-[320px] h-[320px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden     bg-gray-100 flex items-center justify-center">
-    
-    <img
-      src="./images/about.png"
-      alt="About"
-      className="max-w-full max-h-full object-contain"
-    />
+           
 
-  </div>
-</div>
-
-              
+            {/* Main Image */}
+            <div 
+              className="flex justify-center items-center"
+              data-aos="fade-up"
+            >
+              <div className="w-[320px] h-[320px] md:w-[380px] md:h-[380px] rounded-full overflow-hidden bg-gray-100 flex items-center justify-center shadow-xl">
+                <img
+                  src="./images/about.png"
+                  alt="About Smyrna Consulting"
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+            </div>
 
             {/* Core Values - Modern horizontal layout */}
             <div className="mt-8 pt-6 border-t-2 border-gray-100">

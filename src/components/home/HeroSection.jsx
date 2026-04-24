@@ -1,388 +1,593 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import { Link } from 'react-router-dom';
-import { HiArrowRight, HiCheckCircle, HiChevronLeft, HiChevronRight } from 'react-icons/hi';
-import Button from '../common/Button';
+import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
-const HeroSection = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [animationKey, setAnimationKey] = useState(0);
-  const [touchStart, setTouchStart] = useState(0);
-  const [touchEnd, setTouchEnd] = useState(0);
-  const sectionRef = useRef(null);
-  
-  const bannerImages = [
+const Hero = () => {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+  const [swiperInstance, setSwiperInstance] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const banners = [
     {
-      url: '/images/hr.jpg',
-      alt: 'Human Resources',
-      title: 'Human Resources',
-      description: 'Leading People, Leading Organizations',
-      features: ['Training', 'Talent', 'Planning']
+      id: 1,
+      image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1600&h=900&fit=crop',
+      title: 'Smyrna Consulting Solutions',
+      subtitle: 'Since 2008 — Excellence in Compliance & Legal Consultancy',
+      description: 'Trusted by 70+ clients across India for Statutory Audits, HR Solutions & Labour Law Compliance',
+      tag: 'Trusted Partner'
     },
     {
-      url: '/images/payroll.jpg',
-      alt: 'Payroll Services',
-      title: 'Payroll & H.R Audit',
-      description: 'Payroll, ESS, HR Audit, Attendance, Leave, Reports',
-      features: ['Payroll', 'ESS', 'Audit']
+      id: 2,
+      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=900&fit=crop',
+      title: 'Expert Legal Consultancy',
+      subtitle: 'End-to-End Statutory Compliance Solutions',
+      description: 'From registrations to renewals, audits to advisory — we handle all labour laws and statutory requirements',
+      tag: 'Legal Expertise'
     },
     {
-      url: '/images/pf.jpg',
-      alt: 'Labour Laws',
-      title: 'PF, ESI, Labour Laws & Allied Services',
-      description: 'ESI, Labour Law, Gratuity Bonus, Contract Labour, Minimum Wage',
-      features: ['PF', 'ESI', 'Compliance']
-    }
+      id: 3,
+      image: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=1600&h=900&fit=crop',
+      title: 'HR Audit & Payroll Solutions',
+      subtitle: 'Streamline Your HR Operations',
+      description: 'HRMS software, payroll management, and comprehensive HR audits for hotels, retail, manufacturing & ITES',
+      tag: 'HR Excellence'
+    },
+    {
+      id: 4,
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1600&h=900&fit=crop',
+      title: 'Pan India Compliance Services',
+      subtitle: 'South India Specialists — Telangana, AP, Karnataka, TN, Kerala',
+      description: 'Registration & Renewals | Monthly Compliance | Audits | Government Liaison | Labour Law Advisory',
+      tag: 'Pan India Coverage'
+    },
+    {
+      id: 5,
+      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&h=900&fit=crop',
+      title: 'Statutory Audit & Due Diligence',
+      subtitle: 'Multi-layered Compliance Checks',
+      description: 'Monthly, quarterly & yearly audits | Corrective measures | Compliance score improvement',
+      tag: 'Audit Services'
+    },
+    {
+      id: 6,
+      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&h=900&fit=crop',
+      title: 'Trusted by Industry Leaders',
+      subtitle: 'TATA Projects | CtrlS | Hero Future Energies | Motilal Oswal',
+      description: 'Join 70+ prestigious clients who rely on Smyrna for statutory compliance and legal excellence',
+      tag: 'Our Clients'
+    },
   ];
 
-  const nextSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
-    setAnimationKey(prev => prev + 1);
-  }, [bannerImages.length]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length);
-    setAnimationKey(prev => prev + 1);
-  }, [bannerImages.length]);
-
-  // Touch handlers for mobile swipe
-  const handleTouchStart = (e) => {
-    setTouchStart(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > 50;
-    const isRightSwipe = distance < -50;
-    
-    if (isLeftSwipe) {
-      nextSlide();
+  const handlePrev = useCallback(() => {
+    if (swiperInstance && !isAnimating) {
+      setIsAnimating(true);
+      swiperInstance.slidePrev();
+      setTimeout(() => setIsAnimating(false), 1300);
     }
-    if (isRightSwipe) {
-      prevSlide();
+  }, [swiperInstance, isAnimating]);
+
+  const handleNext = useCallback(() => {
+    if (swiperInstance && !isAnimating) {
+      setIsAnimating(true);
+      swiperInstance.slideNext();
+      setTimeout(() => setIsAnimating(false), 1300);
     }
-    
-    setTouchStart(0);
-    setTouchEnd(0);
-  };
+  }, [swiperInstance, isAnimating]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [nextSlide]);
+    if (swiperInstance) {
+      const handleSlideChange = () => {
+        setActiveIndex(swiperInstance.realIndex);
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 1300);
+      };
+      swiperInstance.on('slideChange', handleSlideChange);
+      return () => {
+        swiperInstance.off('slideChange', handleSlideChange);
+      };
+    }
+  }, [swiperInstance]);
 
-  // Pause auto-slide on hover/touch
-  const handleMouseEnter = () => {
-    // Auto-slide will be paused by clearing interval
-    // We'll handle this by clearing and resetting interval
+  useEffect(() => {
+    if (swiperInstance) {
+      const progressBar = document.querySelector('.hero-progress-bar-fill');
+      if (progressBar) {
+        const updateProgress = () => {
+          const progress = (swiperInstance.realIndex + 1) / banners.length * 100;
+          progressBar.style.width = `${progress}%`;
+        };
+        updateProgress();
+        swiperInstance.on('slideChange', updateProgress);
+        return () => swiperInstance.off('slideChange', updateProgress);
+      }
+    }
+  }, [swiperInstance, banners.length]);
+
+  const renderImageAnimation = (banner, idx) => {
+    const isActive = activeIndex === idx;
+    return (
+      <div className="blur-scale-container">
+        <div
+          className={`blur-scale-bg ${isActive ? 'animate-blur-scale-in' : 'animate-blur-scale-out'}`}
+          style={{
+            backgroundImage: `url(${banner.image})`,
+          }}
+        />
+      </div>
+    );
   };
 
   return (
-    <section 
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden"
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
-      {/* Background Image with Zoom Out Animation */}
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-black/70 z-10"></div>
-        <div 
-          key={currentIndex}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-all duration-1000 ease-out animate-zoom-out"
-          style={{
-            backgroundImage: `url(${bannerImages[currentIndex].url})`,
-            backgroundAttachment: 'fixed'
-          }}
-        ></div>
-      </div>
+    <section className="relative h-screen w-full overflow-hidden">
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-20 py-16 sm:py-20 md:py-24 lg:py-28">
-        <div className="max-w-4xl mx-auto lg:mx-0 text-center lg:text-left">
-          {/* Title with enhanced animation - Responsive text sizes */}
-          <div key={`title-${animationKey}`} className="mb-3 sm:mb-4 md:mb-5 overflow-hidden">
-            <h1 
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-white mb-3 sm:mb-4 animate-title-reveal"
-              style={{ 
-                fontFamily: "'Mulish', 'Mulish Fallback', sans-serif",
-                lineHeight: '1.2',
-                letterSpacing: '-0.02em'
-              }}
-            >
-              {bannerImages[currentIndex].title}
-            </h1>
-          </div>
-
-          {/* Description with fade up animation - Responsive text */}
-          <div key={`desc-${animationKey}`} className="mb-5 sm:mb-6 md:mb-7 overflow-hidden px-2 sm:px-0">
-            <p 
-              className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl animate-fade-up max-w-2xl mx-auto lg:mx-0"
-              style={{ 
-                fontFamily: "'Mulish', 'Mulish Fallback', sans-serif",
-                lineHeight: '1.5'
-              }}
-            >
-              {bannerImages[currentIndex].description}
-            </p>
-          </div>
-
-          {/* Features List with staggered animation - Responsive grid/flex */}
-          <div className="flex flex-wrap gap-3 sm:gap-4 mb-6 sm:mb-7 md:mb-8 justify-center lg:justify-start">
-            {bannerImages[currentIndex].features.map((feature, idx) => (
-              <div 
-                key={`${feature}-${animationKey}-${idx}`} 
-                className="flex items-center gap-1.5 sm:gap-2 animate-feature-slide bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-1.5 sm:py-2"
-                style={{ animationDelay: `${idx * 0.1}s` }}
-              >
-                <HiCheckCircle className="text-orange-500 text-sm sm:text-base md:text-lg flex-shrink-0 animate-scale-in" />
-                <span className="text-gray-200 text-xs sm:text-sm md:text-base font-semibold tracking-wide">{feature}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Buttons - Responsive sizing */}
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 animate-buttons-slide justify-center lg:justify-start">
-            <Button 
-              to="/contact" 
-              size="sm" 
-              variant="primary" 
-              className="transform transition-transform hover:scale-105 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto"
-            >
-              Get Free Consultation
-              <HiArrowRight className="ml-2 text-sm sm:text-base transition-transform group-hover:translate-x-1" />
-            </Button>
-            <Button 
-              to="/services" 
-              size="sm" 
-              variant="outline" 
-              className="transform transition-transform hover:scale-105 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-2.5 w-full sm:w-auto"
-            >
-              Explore Our Services
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* Carousel Navigation Arrows - Hidden on mobile, visible on tablet+ */}
-      <button
-        onClick={prevSlide}
-        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white p-2 lg:p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm items-center justify-center"
-        aria-label="Previous slide"
-      >
-        <HiChevronLeft className="text-lg lg:text-xl" />
-      </button>
-      
-      <button
-        onClick={nextSlide}
-        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 transform -translate-y-1/2 z-30 bg-black/50 hover:bg-black/70 text-white p-2 lg:p-3 rounded-full transition-all duration-300 hover:scale-110 backdrop-blur-sm items-center justify-center"
-        aria-label="Next slide"
-      >
-        <HiChevronRight className="text-lg lg:text-xl" />
-      </button>
-
-      {/* Mobile Swipe Hint */}
-      <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-30 md:hidden">
-        <div className="flex gap-1 text-white/40 text-xs">
-          <span>← Swipe →</span>
-        </div>
-      </div>
-
-      {/* Carousel Indicators - Improved touch targets */}
-      <div className="absolute bottom-8 sm:bottom-10 left-1/2 transform -translate-x-1/2 z-30 flex gap-2 sm:gap-3">
-        {bannerImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => {
-              setCurrentIndex(index);
-              setAnimationKey(prev => prev + 1);
-            }}
-            className={`transition-all duration-300 rounded-full ${
-              index === currentIndex
-                ? 'w-6 sm:w-8 h-1.5 bg-orange-500'
-                : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/80'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-
-      {/* Scroll Indicator - Hidden on very small screens */}
-      <div className="hidden sm:block absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce-slow">
-        <div className="w-5 h-8 border-2 border-white/30 rounded-full flex justify-center">
-          <div className="w-1 h-2 bg-white/50 rounded-full mt-2 animate-scroll-pulse"></div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        /* Import Mulish font */
-        @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;600;700;800;900&display=swap');
-        
-        * {
-          font-family: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        .hero-title {
+          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-family: 'Playfair Display', serif !important;
+          font-weight: 800;
+          letter-spacing: -0.01em;
+          color: #FFFFFF;
         }
-        
-        @keyframes zoom-out {
+
+        .hero-subtitle {
+          font-family: 'Mulish', sans-serif !important;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          color: #FFFFFF;
+        }
+
+        .hero-description {
+          font-family: 'Mulish', sans-serif !important;
+          color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* ========== BLUR SCALE ANIMATION ========== */
+        .blur-scale-container {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+
+        .blur-scale-bg {
+          position: absolute;
+          inset: 0;
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          will-change: transform, filter, opacity;
+        }
+
+        .animate-blur-scale-in {
+          animation: blurScaleIn 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .animate-blur-scale-out {
+          animation: blurScaleOut 1.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes blurScaleIn {
           0% {
-            transform: scale(1.1);
+            transform: scale(1.3);
+            filter: blur(20px);
+            opacity: 0;
           }
           100% {
             transform: scale(1);
-          }
-        }
-        
-        .animate-zoom-out {
-          animation: zoom-out 1s ease-out forwards;
-        }
-        
-        @keyframes title-reveal {
-          0% {
-            opacity: 0;
-            transform: translateY(50px);
-            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-          }
-          100% {
+            filter: blur(0);
             opacity: 1;
-            transform: translateY(0);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           }
         }
-        
-        .animate-title-reveal {
-          animation: title-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-        
-        @keyframes fade-up {
+
+        @keyframes blurScaleOut {
           0% {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fade-up {
-          animation: fade-up 0.6s ease-out 0.2s forwards;
-          opacity: 0;
-        }
-        
-        @keyframes feature-slide {
-          0% {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        .animate-feature-slide {
-          animation: feature-slide 0.5s ease-out forwards;
-          opacity: 0;
-        }
-        
-        @keyframes scale-in {
-          0% {
-            opacity: 0;
-            transform: scale(0);
-          }
-          100% {
-            opacity: 1;
             transform: scale(1);
+            filter: blur(0);
+            opacity: 1;
+          }
+          100% {
+            transform: scale(1.3);
+            filter: blur(20px);
+            opacity: 0;
           }
         }
-        
-        .animate-scale-in {
-          animation: scale-in 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+
+        /* Dark Overlay */
+        .hero-overlay {
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.55);
+          pointer-events: none;
+          z-index: 5;
         }
-        
-        @keyframes buttons-slide {
+
+        /* Premium Text Reveal Animation */
+        .hero-content {
+          opacity: 0;
+          animation: premiumReveal 1s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+          animation-delay: 0.3s;
+        }
+
+        @keyframes premiumReveal {
           0% {
             opacity: 0;
             transform: translateY(40px);
+            filter: blur(12px);
           }
           100% {
             opacity: 1;
             transform: translateY(0);
+            filter: blur(0);
           }
         }
-        
-        .animate-buttons-slide {
-          animation: buttons-slide 0.7s ease-out 0.4s forwards;
+
+        /* Staggered Text Animations */
+        .category-tag {
           opacity: 0;
+          animation: fadeSlideUp 0.7s ease forwards;
+          animation-delay: 0.4s;
         }
-        
-        @keyframes bounce-slow {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-10px);
-          }
+
+        .hero-title {
+          opacity: 0;
+          animation: fadeSlideUp 0.8s ease forwards;
+          animation-delay: 0.5s;
         }
-        
-        .animate-bounce-slow {
-          animation: bounce-slow 2s ease-in-out infinite;
+
+        .hero-subtitle {
+          opacity: 0;
+          animation: fadeSlideUp 0.8s ease forwards;
+          animation-delay: 0.7s;
         }
-        
-        @keyframes scroll-pulse {
-          0%, 100% {
-            opacity: 0.3;
-            transform: translateY(0);
+
+        .hero-description {
+          opacity: 0;
+          animation: fadeSlideUp 0.8s ease forwards;
+          animation-delay: 0.9s;
+        }
+
+        .button-group {
+          opacity: 0;
+          animation: fadeSlideUp 0.8s ease forwards;
+          animation-delay: 1.1s;
+        }
+
+        @keyframes fadeSlideUp {
+          from {
+            opacity: 0;
+            transform: translateY(25px);
           }
-          50% {
+          to {
             opacity: 1;
-            transform: translateY(8px);
+            transform: translateY(0);
           }
         }
-        
-        .animate-scroll-pulse {
-          animation: scroll-pulse 1.5s ease-in-out infinite;
+
+        /* Centered content */
+        .centered-content {
+          text-align: center;
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+          width: 100%;
         }
-        
-        /* Touch device optimizations */
-        @media (hover: none) and (pointer: coarse) {
-          button {
-            min-height: 44px;
-            min-width: 44px;
+
+        /* Orange & White Buttons - REDUCED SIZES */
+        .btn-primary {
+          background-color: #E85D04 !important;
+          color: white;
+          padding: 0.6rem 1.6rem !important;
+          border-radius: 50px;
+          font-weight: 700;
+          font-size: 0.85rem !important;
+          letter-spacing: 0.03em;
+          transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+          border: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          position: relative;
+          overflow: hidden;
+          z-index: 10;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .btn-primary::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 0;
+          height: 0;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.25);
+          transform: translate(-50%, -50%);
+          transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+          width: 200px;
+          height: 200px;
+        }
+
+        .btn-primary:hover {
+          background-color: #F48C06 !important;
+          transform: translateY(-2px);
+          box-shadow: 0 10px 24px rgba(232, 93, 4, 0.4);
+        }
+
+        .btn-outline {
+          border: 2px solid #FFFFFF;
+          color: white;
+          padding: 0.56rem 1.6rem !important;
+          border-radius: 50px;
+          font-weight: 700;
+          font-size: 0.85rem !important;
+          letter-spacing: 0.03em;
+          transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+          background: rgba(0, 0, 0, 0.3);
+          backdrop-filter: blur(4px);
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          position: relative;
+          overflow: hidden;
+          z-index: 10;
+          cursor: pointer;
+          text-decoration: none;
+        }
+
+        .btn-outline::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.6s;
+        }
+
+        .btn-outline:hover::before {
+          left: 100%;
+        }
+
+        .btn-outline:hover {
+          background-color: #E85D04;
+          border-color: #E85D04;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 20px rgba(232, 93, 4, 0.3);
+        }
+
+        .btn-primary svg, .btn-outline svg {
+          width: 16px;
+          height: 16px;
+        }
+
+        /* Premium Navigation Buttons */
+        .custom-swiper-button-prev,
+        .custom-swiper-button-next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 44px;
+          height: 44px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(12px);
+          border: 1.5px solid rgba(255, 255, 255, 0.3);
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          z-index: 20;
+          color: white;
+        }
+
+        .custom-swiper-button-prev {
+          left: 2rem;
+        }
+
+        .custom-swiper-button-next {
+          right: 2rem;
+        }
+
+        .custom-swiper-button-prev:hover,
+        .custom-swiper-button-next:hover {
+          background: #E85D04;
+          border-color: #E85D04;
+          transform: translateY(-50%) scale(1.1);
+          box-shadow: 0 12px 24px rgba(232, 93, 4, 0.4);
+        }
+
+        .custom-swiper-button-prev:active,
+        .custom-swiper-button-next:active {
+          transform: translateY(-50%) scale(0.95);
+        }
+
+        /* Progress Bar */
+        .hero-progress-bar {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 3px;
+          background: rgba(255, 255, 255, 0.2);
+          z-index: 30;
+          overflow: hidden;
+        }
+
+        .hero-progress-bar-fill {
+          height: 100%;
+          background-color: #E85D04;
+          width: 0%;
+          transition: width 0.1s linear;
+        }
+
+        .swiper-slide {
+          overflow: hidden;
+        }
+
+        .relative.z-10 {
+          z-index: 15;
+        }
+
+        /* Category tag */
+        .category-tag {
+          background: rgba(232, 93, 4, 0.85);
+          backdrop-filter: blur(4px);
+          border: none;
+          color: white;
+          font-weight: 700;
+          letter-spacing: 0.05em;
+          font-size: 0.7rem;
+          padding: 0.35rem 1.2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+          .hero-title {
+            font-size: 2rem !important;
           }
-          
-          .animate-feature-slide {
-            animation-duration: 0.4s;
+          .hero-subtitle {
+            font-size: 0.95rem !important;
+          }
+          .hero-description {
+            font-size: 0.8rem !important;
+          }
+          .btn-primary, .btn-outline {
+            padding: 0.5rem 1.2rem !important;
+            font-size: 0.75rem !important;
+          }
+          .btn-primary svg, .btn-outline svg {
+            width: 14px;
+            height: 14px;
+          }
+          .custom-swiper-button-prev,
+          .custom-swiper-button-next {
+            width: 36px;
+            height: 36px;
+          }
+          .custom-swiper-button-prev {
+            left: 1rem;
+          }
+          .custom-swiper-button-next {
+            right: 1rem;
           }
         }
-        
-        /* Small screen adjustments */
-        @media (max-width: 480px) {
-          .animate-title-reveal {
-            font-size: 1.75rem !important;
+
+        @media (max-width: 640px) {
+          .custom-swiper-button-prev,
+          .custom-swiper-button-next {
+            display: none;
           }
-        }
-        
-        /* Smooth transitions */
-        .transition-all {
-          transition: all 0.3s ease;
-        }
-        
-        /* Prevent text selection during swipe */
-        .no-select {
-          user-select: none;
-          -webkit-tap-highlight-color: transparent;
+          .category-tag {
+            font-size: 0.6rem;
+            padding: 0.25rem 1rem;
+          }
         }
       `}</style>
+
+      {/* Progress Bar */}
+      <div className="hero-progress-bar">
+        <div className="hero-progress-bar-fill" />
+      </div>
+
+      <Swiper
+        modules={[Autoplay, Navigation]}
+        navigation={{
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        }}
+        onSwiper={(swiper) => {
+          setSwiperInstance(swiper);
+          if (swiper.params.navigation) {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }
+        }}
+        onSlideChangeTransitionStart={() => setIsAnimating(true)}
+        onSlideChangeTransitionEnd={() => setIsAnimating(false)}
+        autoplay={{
+          delay: 7000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
+        loop={true}
+        speed={1200}
+        className="h-full w-full"
+      >
+        {banners.map((banner, idx) => (
+          <SwiperSlide key={banner.id}>
+            <div className="relative h-full w-full">
+              {renderImageAnimation(banner, idx)}
+              <div className="hero-overlay" />
+              <div className="relative z-10 flex flex-col justify-center items-center h-full px-6 md:px-12 lg:px-20">
+                <div className="centered-content hero-content">
+                  <div className="category-tag inline-block mb-4 rounded-full text-white font-bold tracking-wider uppercase">
+                    {banner.tag}
+                  </div>
+                  <h1 className="hero-title text-white font-bold mb-3 leading-[1.2]">
+                    {banner.title}
+                  </h1>
+                  <h2 className="hero-subtitle text-white/95 text-lg md:text-xl lg:text-xl mb-3 font-semibold tracking-wide">
+                    {banner.subtitle}
+                  </h2>
+                  <p className="hero-description text-sm md:text-base max-w-2xl mx-auto mb-6 leading-relaxed">
+                    {banner.description}
+                  </p>
+                  <div className="button-group flex flex-wrap gap-4 justify-center">
+                    <Link to="/contact" className="btn-primary">
+                      <span>Get In Touch</span>
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </Link>
+                    <Link to="/services" className="btn-outline">
+                      <span>Our Services</span>
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <button
+        ref={prevRef}
+        className="custom-swiper-button-prev"
+        aria-label="Previous slide"
+        onClick={handlePrev}
+      >
+        <FiChevronLeft size={22} strokeWidth={2.5} />
+      </button>
+
+      <button
+        ref={nextRef}
+        className="custom-swiper-button-next"
+        aria-label="Next slide"
+        onClick={handleNext}
+      >
+        <FiChevronRight size={22} strokeWidth={2.5} />
+      </button>
     </section>
   );
 };
 
-export default HeroSection;
+export default Hero;

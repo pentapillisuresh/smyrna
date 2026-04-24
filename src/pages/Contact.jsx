@@ -1,19 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import SectionTitle from '../components/common/SectionTitle';
-import Button from '../components/common/Button';
 import { 
   HiLocationMarker, 
   HiPhone, 
   HiMail, 
   HiClock,
   HiArrowRight,
-  HiCheckCircle
+  HiCheckCircle,
+  HiOfficeBuilding
 } from 'react-icons/hi';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -45,7 +47,6 @@ const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
     setTimeout(() => {
       console.log('Form submitted:', formData);
       setIsSubmitting(false);
@@ -65,22 +66,25 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: HiLocationMarker,
-      title: 'Visit Us',
-      lines: ['123 Business Avenue, Sector 62', 'Noida, Uttar Pradesh 201309'],
+      title: 'Visit Our Office',
+      lines: ['Hyderabad, Telangana, India'],
+      detail: 'Serving South India',
       color: 'bg-orange-100',
       iconColor: 'text-orange-600'
     },
     {
       icon: HiPhone,
       title: 'Call Us',
-      lines: ['+91 98765 43210', '+91 120 456 7890'],
+      lines: ['+91 98765 43210', '+91 40 1234 5678'],
+      detail: 'Mon-Sat, 9AM to 6PM',
       color: 'bg-orange-100',
       iconColor: 'text-orange-600'
     },
     {
       icon: HiMail,
       title: 'Email Us',
-      lines: ['info@smyrnaconsultancy.com', 'support@smyrnaconsultancy.com'],
+      lines: ['info@smyrnaconsulting.com', 'support@smyrnaconsulting.com'],
+      detail: 'Response within 24 hours',
       color: 'bg-orange-100',
       iconColor: 'text-orange-600'
     },
@@ -88,42 +92,53 @@ const Contact = () => {
       icon: HiClock,
       title: 'Business Hours',
       lines: ['Monday - Friday: 9:00 AM - 6:00 PM', 'Saturday: 10:00 AM - 2:00 PM'],
+      detail: 'Sunday Closed',
       color: 'bg-orange-100',
       iconColor: 'text-orange-600'
     }
   ];
 
+  const services = [
+    "Registration & Licensing",
+    "Statutory Audit & Due Diligence",
+    "Monthly Compliance",
+    "Advisory & Consulting",
+    "HR & Payroll Management",
+    "Government Liaison"
+  ];
+
   return (
-    <div className="bg-white pt-24 overflow-x-hidden">
-      {/* Hero Section with Banner Image */}
-      <section className="relative h-[400px] overflow-hidden">
+    <div className="bg-white overflow-x-hidden">
+      
+      {/* Hero Section */}
+      <section className="relative h-[450px] overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2073&auto=format&fit=crop"
             alt="Contact Us"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 to-black/60"></div>
+          <div className="absolute inset-0 bg-black/75"></div>
         </div>
         <div className="relative z-10 h-full flex items-center justify-center text-center">
           <div className="max-w-4xl mx-auto px-4" data-aos="fade-up" data-aos-duration="800">
-            <span className="text-orange-500 font-semibold text-sm uppercase tracking-wider mb-4 inline-block px-3 py-1 bg-orange-500/20 rounded-full">
+            <span className="text-orange-400 font-semibold text-sm uppercase tracking-wider mb-4 inline-block px-4 py-1.5 bg-orange-500/20 rounded-full">
               Get in Touch
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
               Let's Discuss Your
-              <span className="text-orange-500 block mt-2">Business Needs</span>
+              <span className="text-orange-400 block mt-2">Compliance Needs</span>
             </h1>
             <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto">
-              Have questions about our services? Ready to start your compliance journey? 
-              We're here to help. Reach out to us and we'll respond within 24 hours.
+              Since 2008, we've been helping businesses achieve complete statutory compliance. 
+              Reach out to us and we'll respond within 24 hours.
             </p>
           </div>
         </div>
       </section>
 
       {/* Contact Info Cards */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {contactInfo.map((info, idx) => {
@@ -131,17 +146,18 @@ const Contact = () => {
               return (
                 <div 
                   key={idx} 
-                  className="bg-white rounded-2xl p-6 text-center group hover:-translate-y-2 transition-all duration-300 border border-gray-200 shadow-sm hover:shadow-xl"
+                  className="bg-gray-50 rounded-2xl p-6 text-center group hover:-translate-y-2 transition-all duration-500 hover:shadow-xl"
                   data-aos="fade-up"
                   data-aos-delay={idx * 100}
                 >
-                  <div className={`w-14 h-14 rounded-full ${info.color} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
-                    <Icon className={`text-2xl ${info.iconColor}`} />
+                  <div className={`w-14 h-14 rounded-full ${info.color} flex items-center justify-center mx-auto mb-4 group-hover:bg-orange-500 transition-all duration-300`}>
+                    <Icon className={`text-2xl ${info.iconColor} group-hover:text-white transition-colors duration-300`} />
                   </div>
-                  <h3 className="text-lg font-bold text-gray-800 mb-3">{info.title}</h3>
+                  <h3 className="text-lg font-bold text-gray-800 mb-2">{info.title}</h3>
                   {info.lines.map((line, lIdx) => (
-                    <p key={lIdx} className="text-gray-500 text-sm">{line}</p>
+                    <p key={lIdx} className="text-gray-600 text-sm">{line}</p>
                   ))}
+                  <p className="text-orange-600 text-xs mt-2 font-medium">{info.detail}</p>
                 </div>
               );
             })}
@@ -149,109 +165,110 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form & Map Section */}
-      <section className="py-16 bg-gray-50">
+      {/* Contact Form & Office Info */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div data-aos="fade-right" data-aos-duration="800">
               <div className="mb-8">
                 <span className="text-orange-600 font-semibold text-sm uppercase tracking-wider">Send Us a Message</span>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2">We'd Love to Hear From You</h2>
-                <div className="w-16 h-1 bg-orange-600 mt-4 rounded-full"></div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2">We'd Love to Hear From You</h2>
+                <div className="w-16 h-1 bg-orange-500 mt-4 rounded-full"></div>
+                <p className="text-gray-600 mt-4">Fill out the form below and our team will get back to you shortly.</p>
               </div>
 
               {submitSuccess && (
-                <div className="mb-6 p-4 bg-green-100 border border-green-400 rounded-lg flex items-center gap-3">
+                <div className="mb-6 p-4 bg-green-50 border border-green-400 rounded-xl flex items-center gap-3 animate-pulse">
                   <HiCheckCircle className="text-green-600 text-xl" />
                   <span className="text-green-700">Thank you! We'll get back to you soon.</span>
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-gray-700 mb-2 font-semibold">Full Name *</label>
+                    <label className="block text-gray-700 mb-2 font-semibold text-sm">Full Name *</label>
                     <input
                       type="text"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
-                      placeholder="John Doe"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
+                      placeholder="Enter your full name"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 mb-2 font-semibold">Email Address *</label>
+                    <label className="block text-gray-700 mb-2 font-semibold text-sm">Email Address *</label>
                     <input
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
-                      placeholder="john@example.com"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
+                      placeholder="Enter your email"
                     />
                   </div>
                 </div>
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-gray-700 mb-2 font-semibold">Phone Number</label>
+                    <label className="block text-gray-700 mb-2 font-semibold text-sm">Phone Number</label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
-                      placeholder="+91 98765 43210"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
+                      placeholder="+91 XXXXX XXXXX"
                     />
                   </div>
                   <div>
-                    <label className="block text-gray-700 mb-2 font-semibold">Company Name</label>
+                    <label className="block text-gray-700 mb-2 font-semibold text-sm">Company Name</label>
                     <input
                       type="text"
                       name="company"
                       value={formData.company}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
-                      placeholder="Your Company"
+                      className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
+                      placeholder="Your company name"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-gray-700 mb-2 font-semibold">Service Interested In</label>
+                  <label className="block text-gray-700 mb-2 font-semibold text-sm">Service Interested In</label>
                   <select
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
+                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all"
                   >
                     <option value="">Select a Service</option>
-                    <option value="labour-laws">Labour Laws</option>
-                    <option value="audit-services">Audit Services</option>
-                    <option value="hr-solutions">HR Solutions</option>
-                    <option value="payroll-management">Payroll Management</option>
-                    <option value="contract-staffing">Contract Staffing</option>
-                    <option value="licensing">Licensing</option>
+                    <option value="registration-licensing">Registration & Licensing</option>
+                    <option value="auditing-due-diligence">Auditing & Due Diligence</option>
+                    <option value="monthly-compliance">End-to-End Monthly Compliance</option>
+                    <option value="advisory-consulting">Advisory & Consulting</option>
+                    <option value="hr-payroll">HR & Payroll Management</option>
+                    <option value="govt-liaison">Government Liaison & Representation</option>
                   </select>
                 </div>
                 <div>
-                  <label className="block text-gray-700 mb-2 font-semibold">Message *</label>
+                  <label className="block text-gray-700 mb-2 font-semibold text-sm">Message *</label>
                   <textarea
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
                     required
                     rows="5"
-                    className="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all resize-none"
+                    className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-800 placeholder-gray-400 focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-200 transition-all resize-none"
                     placeholder="Tell us about your requirements..."
                   ></textarea>
                 </div>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3.5 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                   {!isSubmitting && <HiArrowRight className="text-lg" />}
@@ -259,61 +276,92 @@ const Contact = () => {
               </form>
             </div>
 
-            {/* Map & Social */}
+            {/* Office Information & Social */}
             <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-              {/* Map Card */}
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 mb-6">
-                <div className="bg-gray-100 p-4 border-b border-gray-200">
-                  <h3 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                    <FaMapMarkerAlt className="text-orange-600" />
-                    Our Location
+              {/* Office Info Card */}
+              <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 mb-8">
+                <div className="bg-gray-900 p-5">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                    <FaBuilding className="text-orange-400" />
+                    Smyrna Consulting Solutions Pvt. Ltd.
                   </h3>
+                  <p className="text-gray-400 text-sm mt-1">Industrial & Labour Laws / HR / Statutory Compliance Consultants</p>
                 </div>
-                <div className="h-[250px] bg-gray-200 flex items-center justify-center">
-                  <div className="text-center">
-                    <HiLocationMarker className="text-5xl text-orange-600/50 mx-auto mb-3" />
-                    <p className="text-gray-500">Interactive Map</p>
-                    <p className="text-sm text-gray-400">123 Business Avenue, Noida</p>
+                <div className="p-6">
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                      <HiLocationMarker className="text-orange-600 text-lg" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Head Office</h4>
+                      <p className="text-gray-600 text-sm">Hyderabad, Telangana, India</p>
+                      <p className="text-gray-500 text-xs mt-1">Serving South India - Telangana, AP, Karnataka, TN & Kerala</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                      <HiPhone className="text-orange-600 text-lg" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Phone</h4>
+                      <p className="text-gray-600 text-sm">+91 98765 43210</p>
+                      <p className="text-gray-500 text-xs">+91 40 1234 5678</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center flex-shrink-0">
+                      <HiMail className="text-orange-600 text-lg" />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800">Email</h4>
+                      <p className="text-gray-600 text-sm">info@smyrnaconsulting.com</p>
+                      <p className="text-gray-500 text-xs">support@smyrnaconsulting.com</p>
+                    </div>
                   </div>
                 </div>
               </div>
-              
-              {/* Social Links - Side by Side Icons No Text */}
-              <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-                <h3 className="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                  Connect With Us
+
+              {/* Services List */}
+              <div className="bg-white rounded-2xl p-6 shadow-xl border border-gray-100 mb-8">
+                <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+                  <HiCheckCircle className="text-orange-500" />
+                  Our Services
                 </h3>
+                <div className="grid grid-cols-2 gap-2">
+                  {services.map((service, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <div className="w-1.5 h-1.5 bg-orange-500 rounded-full"></div>
+                      <span className="text-gray-600 text-sm">{service}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Social Links */}
+              <div className="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-6 text-center">
+                <h3 className="text-xl font-bold text-white mb-4">Connect With Us</h3>
                 <div className="flex justify-center gap-4">
                   {[
-                    { icon: FaFacebookF, link: '#', bgColor: 'hover:bg-blue-600', iconColor: 'text-blue-600' },
-                    { icon: FaTwitter, link: '#', bgColor: 'hover:bg-sky-500', iconColor: 'text-sky-500' },
-                    { icon: FaLinkedinIn, link: '#', bgColor: 'hover:bg-blue-700', iconColor: 'text-blue-700' },
-                    { icon: FaInstagram, link: '#', bgColor: 'hover:bg-pink-600', iconColor: 'text-pink-600' }
+                    { icon: FaFacebookF, link: '#', color: 'hover:bg-blue-600' },
+                    { icon: FaTwitter, link: '#', color: 'hover:bg-sky-500' },
+                    { icon: FaLinkedinIn, link: '#', color: 'hover:bg-blue-700' },
+                    { icon: FaInstagram, link: '#', color: 'hover:bg-pink-600' }
                   ].map((social, idx) => {
                     const Icon = social.icon;
                     return (
                       <a
                         key={idx}
                         href={social.link}
-                        className={`w-14 h-14 rounded-full bg-gray-100 flex items-center justify-center ${social.bgColor} transition-all duration-300 hover:scale-110 hover:shadow-lg group`}
+                        className={`w-12 h-12 rounded-full bg-white/20 flex items-center justify-center ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg group`}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Icon className={`text-2xl ${social.iconColor} group-hover:text-white transition-colors duration-300`} />
+                        <Icon className="text-xl text-white group-hover:text-white transition-colors duration-300" />
                       </a>
                     );
                   })}
                 </div>
-              </div>
-
-              {/* Quick Support */}
-              <div className="mt-6 bg-orange-50 rounded-2xl p-6 border border-orange-200">
-                <h4 className="font-bold text-gray-800 mb-2">Need Quick Support?</h4>
-                <p className="text-gray-600 text-sm mb-3">Our team is available 24/7 to assist you</p>
-                <a href="tel:+919876543210" className="text-orange-600 font-semibold flex items-center gap-2">
-                  <HiPhone className="text-sm" />
-                  +91 98765 43210
-                </a>
+                <p className="text-orange-100 text-sm mt-4">Follow us for updates on labour laws & compliance</p>
               </div>
             </div>
           </div>
@@ -321,27 +369,36 @@ const Contact = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-dark rounded-3xl p-12 text-center" data-aos="zoom-in-up" data-aos-duration="800">
+          <div className="bg-gray-900 rounded-3xl p-12 text-center" data-aos="zoom-in-up" data-aos-duration="800">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Get Started?
+              Ready to Ensure Complete Compliance?
             </h2>
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-              Let's discuss how Smyrna Consultancy can help your business achieve complete compliance.
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+              We provide services upon mutual agreement. Let's discuss how we can help your business 
+              achieve complete statutory compliance.
             </p>
-            <a 
-              href="tel:+919876543210" 
-              className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
-            >
-              Call Us Now
-              <HiPhone className="text-lg" />
-            </a>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a 
+                href="tel:+919876543210" 
+                className="inline-flex items-center gap-2 bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                <HiPhone className="text-lg" />
+                Call Us Now
+              </a>
+              <a 
+                href="mailto:info@smyrnaconsulting.com" 
+                className="inline-flex items-center gap-2 border-2 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105"
+              >
+                <HiMail className="text-lg" />
+                Email Us
+              </a>
+            </div>
+            <p className="text-gray-500 text-sm mt-6">We provide services upon mutual agreement</p>
           </div>
         </div>
       </section>
-
-    
     </div>
   );
 };

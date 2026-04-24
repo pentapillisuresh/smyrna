@@ -53,7 +53,7 @@ const Footer = () => {
           <div className="animate-slide-up animation-delay-100">
             <h4 className="text-white font-display font-bold text-lg mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {['About Us', 'Our Services', 'Our Clients', 'Careers', 'Contact Us'].map((item, idx) => (
+              {['About Us', 'Our Services', 'Our Clients',  'Contact Us'].map((item, idx) => (
                 <li key={idx}>
                   <Link
                     to={`/${item.toLowerCase().replace(/\s+/g, '-').replace('us', '')}`}

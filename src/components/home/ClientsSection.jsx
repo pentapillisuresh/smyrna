@@ -13,10 +13,29 @@ const ClientsSection = () => {
   const [imageErrors, setImageErrors] = useState({});
 
   const clients = [
-    { name: 'client1', logo: '/images/client1.png' },
-    { name: 'client2', logo: '/images/client2.png' },
-    { name: 'client3', logo: '/images/client3.png' },
-    { name: 'client4', logo: '/images/client4.png' },
+    { name: 'client1', logo: '/images/logo1.jpg' },
+    { name: 'client2', logo: '/images/logo2.png' },
+    { name: 'client3', logo: '/images/logo3.png' },
+    { name: 'client4', logo: '/images/logo4.png' },
+       { name: 'client4', logo: '/images/logo5.png' },
+          { name: 'client4', logo: '/images/logo6.png' },
+             { name: 'client4', logo: '/images/logo7.png' },
+                { name: 'client4', logo: '/images/logo8.jpg' },
+                { name: 'client4', logo: '/images/logo9.png' },
+                { name: 'client4', logo: '/images/logo10.png' },
+                { name: 'client4', logo: '/images/logo11.png' },
+                { name: 'client4', logo: '/images/logo12.png' },
+                { name: 'client4', logo: '/images/logo13.jpg' },
+                { name: 'client4', logo: '/images/logo15.jpg' },
+                { name: 'client4', logo: '/images/logo16.jpg' },
+
+                { name: 'client4', logo: '/images/logo17.jpg' },
+
+                { name: 'client4', logo: '/images/logo18.jpg' },
+
+
+
+
   ];
 
   const handleImageError = (clientName) => {

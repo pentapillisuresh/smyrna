@@ -4,8 +4,10 @@ import ServicesSection from '../components/home/ServicesSection';
 import AboutPreview from '../components/home/AboutPreview';
 import ClientsSection from '../components/home/ClientsSection';
 import CTABanner from '../components/home/CTABanner';
-import WhyChooseUs from "../components/home/WhyChooseUs"
+import Ourprocess from "../components/home/Ourprocess"
 import Testimonials from "../components/home/Testimonials"
+import Industries from "../components/home/Industries"
+import WhyChooseUs from '../components/home/WhyChooseUs';
 
 const Home = () => {
   useEffect(() => {
@@ -35,8 +37,11 @@ const Home = () => {
       <HeroSection />
       <ServicesSection />
       <AboutPreview />
-       <WhyChooseUs/>
+      <Industries/>
+       <Ourprocess/>
+      
       <ClientsSection />
+       <WhyChooseUs/>
       <CTABanner />
       <Testimonials/>
      

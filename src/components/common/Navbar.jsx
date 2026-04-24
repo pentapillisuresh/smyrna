@@ -25,7 +25,7 @@ const Navbar = () => {
     { name: 'About Us', path: '/about' },
     { name: 'Our Services', path: '/services' },
     { name: 'Our Clients', path: '/clients' },
-    { name: 'Careers', path: '/careers' },
+    // { name: 'Careers', path: '/careers' },
     { name: 'Contact Us', path: '/contact' },
   ];
 
@@ -35,13 +35,13 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        (scrolled || location.pathname !== '/')
-  ? 'bg-white shadow-lg py-5'
-  : 'bg-transparent py-5'
-      }`}
-    >
+ <nav
+  className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+    scrolled
+      ? 'bg-white shadow-lg py-5'
+      : 'bg-transparent py-5'
+  }`}
+>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
