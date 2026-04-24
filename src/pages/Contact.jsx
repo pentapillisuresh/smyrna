@@ -8,9 +8,9 @@ import {
   HiClock,
   HiArrowRight,
   HiCheckCircle,
-  HiOfficeBuilding
+  HiOfficeBuilding  // Changed from HiBuilding to HiOfficeBuilding
 } from 'react-icons/hi';
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaMapMarkerAlt, FaBuilding } from 'react-icons/fa';
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaYoutube } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
 const Contact = () => {
@@ -107,14 +107,23 @@ const Contact = () => {
     "Government Liaison"
   ];
 
+  // Social Media Icons data (exact styling from DigitalMedia component)
+  const socialIcons = [
+    { icon: FaYoutube, link: "https://youtube.com", bgColor: "#FF0000", name: "YouTube" },
+    { icon: FaInstagram, link: "https://instagram.com", bgColor: "linear-gradient(45deg, #f09433, #d62976, #962fbf)", name: "Instagram" },
+    { icon: FaFacebookF, link: "https://facebook.com", bgColor: "#1877F2", name: "Facebook" },
+    { icon: FaTwitter, link: "https://twitter.com", bgColor: "#1DA1F2", name: "Twitter" },
+    { icon: FaLinkedinIn, link: "https://linkedin.com", bgColor: "#0A66C2", name: "LinkedIn" }
+  ];
+
   return (
     <div className="bg-white overflow-x-hidden">
       
       {/* Hero Section */}
-      <section className="relative h-[450px] overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?q=80&w=2073&auto=format&fit=crop"
+            src="./images/contact.avif"
             alt="Contact Us"
             className="w-full h-full object-cover"
           />
@@ -282,7 +291,7 @@ const Contact = () => {
               <div className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 mb-8">
                 <div className="bg-gray-900 p-5">
                   <h3 className="text-xl font-bold text-white flex items-center gap-2">
-                    <FaBuilding className="text-orange-400" />
+                    <HiOfficeBuilding className="text-orange-400 text-2xl" />  {/* Fixed icon */}
                     Smyrna Consulting Solutions Pvt. Ltd.
                   </h3>
                   <p className="text-gray-400 text-sm mt-1">Industrial & Labour Laws / HR / Statutory Compliance Consultants</p>
@@ -337,26 +346,29 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Social Links */}
+              {/* Social Media Links Section - EXACT styling from DigitalMedia component */}
               <div className="bg-gradient-to-r from-orange-600 to-orange-700 rounded-2xl p-6 text-center">
-                <h3 className="text-xl font-bold text-white mb-4">Connect With Us</h3>
-                <div className="flex justify-center gap-4">
-                  {[
-                    { icon: FaFacebookF, link: '#', color: 'hover:bg-blue-600' },
-                    { icon: FaTwitter, link: '#', color: 'hover:bg-sky-500' },
-                    { icon: FaLinkedinIn, link: '#', color: 'hover:bg-blue-700' },
-                    { icon: FaInstagram, link: '#', color: 'hover:bg-pink-600' }
-                  ].map((social, idx) => {
+                <div className="text-center mb-4">
+                  <span className="text-xs tracking-[5px] text-orange-200 font-semibold mb-2 inline-block">
+                    CONNECT WITH US
+                  </span>
+                  <div className="w-16 h-0.5 bg-orange-300 mx-auto mb-3"></div>
+                  <h3 className="font-serif text-xl text-white mb-1">Follow Us on Social Media</h3>
+                </div>
+                
+                <div className="flex flex-wrap justify-center gap-4">
+                  {socialIcons.map((social, idx) => {
                     const Icon = social.icon;
                     return (
-                      <a
+                      <a 
                         key={idx}
-                        href={social.link}
-                        className={`w-12 h-12 rounded-full bg-white/20 flex items-center justify-center ${social.color} transition-all duration-300 hover:scale-110 hover:shadow-lg group`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href={social.link} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="social-icon w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-110"
+                        style={{ background: social.bgColor }}
                       >
-                        <Icon className="text-xl text-white group-hover:text-white transition-colors duration-300" />
+                        <Icon size={22} />
                       </a>
                     );
                   })}
@@ -399,6 +411,23 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      {/* Custom CSS for hover effects matching DigitalMedia */}
+      <style>
+        {`
+          .social-icon {
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+          }
+          
+          .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
+          }
+          
+          .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+          }
+        `}
+      </style>
     </div>
   );
 };

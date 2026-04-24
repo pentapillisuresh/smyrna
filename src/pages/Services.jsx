@@ -143,10 +143,10 @@ const Services = () => {
     <div className="bg-white overflow-x-hidden">
       
       {/* Hero Section */}
-      <section className="relative h-[450px] overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2070&auto=format&fit=crop"
+            src="./images/sy.jpg"
             alt="Our Services"
             className="w-full h-full object-cover"
           />

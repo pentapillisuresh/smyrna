@@ -82,7 +82,7 @@ const Clients = () => {
     <div className="bg-white overflow-x-hidden">
       
       {/* Hero Section */}
-      <section className="relative h-[450px] overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2070&auto=format&fit=crop"

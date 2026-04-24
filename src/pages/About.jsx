@@ -44,7 +44,7 @@ const About = () => {
       {/* 1. HERO SECTION */}
       <section className="relative  min-h-[500px] flex items-center justify-center text-center">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover" alt="Library" />
+          <img src="/images/syy.jpg" className="w-full h-full object-cover" alt="Library" />
           <div className="absolute inset-0 bg-black/75"></div>
         </div>
         <div className="relative z-10 max-w-5xl px-6" data-aos="fade-up">

@@ -130,7 +130,7 @@ const Hero = () => {
 
         .hero-title {
           font-size: clamp(2.5rem, 5vw, 4rem);
-          font-family: 'Playfair Display', serif !important;
+          font-family: 'Cormorant Garamond', serif  ;
           font-weight: 800;
           letter-spacing: -0.01em;
           color: #FFFFFF;

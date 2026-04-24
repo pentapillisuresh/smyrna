@@ -94,7 +94,7 @@ const Careers = () => {
   return (
     <div className="bg-white pt-24 overflow-x-hidden">
       {/* Hero Section with Banner Image */}
-      <section className="relative h-[450px] overflow-hidden">
+      <section className="relative h-[500px] overflow-hidden">
         <div className="absolute inset-0">
           <img 
             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2073&auto=format&fit=crop"
