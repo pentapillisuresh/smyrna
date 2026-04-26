@@ -63,7 +63,7 @@ const Ourprocess = () => {
       ref={sectionRef} 
       className="py-20 px-6 overflow-hidden relative"
       style={{
-        backgroundImage: 'url("https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1600&h=900&fit=crop")',
+        backgroundImage: 'url("./images/how.avif")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',

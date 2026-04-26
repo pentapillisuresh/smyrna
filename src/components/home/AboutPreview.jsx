@@ -64,27 +64,27 @@ const AboutPreview = () => {
       }}></div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        {/* Centered About Us Header */}
+        <div className="text-center mb-12" data-aos="fade-down" data-aos-duration="800">
+          <span className="text-xs tracking-[5px] text-orange-600 font-semibold mb-3 inline-block">
+            ABOUT US
+          </span>
+          <div className="w-16 h-0.5 bg-orange-500 mx-auto mb-4"></div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+            Your Strategic Partner in <br />
+            <span className="text-orange-600 relative inline-block">
+              Statutory Compliance
+            </span>
+          </h2>
+          <p className="text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
+            Since <span className="font-bold text-orange-600">2008</span>, Smyrna Consulting Solutions has been providing 
+            quality compliance, legal consultancy, statutory audit & HR audit services.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start mt-8">
           {/* Left Content */}
           <div data-aos="fade-right" data-aos-duration="800">
-            <div className="mb-3">
-              <span className="text-orange-600 font-bold text-sm uppercase tracking-wider inline-block px-3 py-1 bg-orange-50 rounded-full">About Us</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
-              Your Strategic Partner in <br />
-              <span className="text-orange-600 relative inline-block">
-                Statutory Compliance
-                <svg className="absolute bottom-2 left-0 w-full h-3 text-orange-200 -z-10" viewBox="0 0 100 10" preserveAspectRatio="none">
-                
-                </svg>
-              </span>
-            </h2>
-            
-            <p className="text-gray-600 text-lg mb-5 leading-relaxed">
-              Since <span className="font-bold text-orange-600">2008</span>, Smyrna Consulting Solutions has been providing 
-              quality compliance, legal consultancy, statutory audit & HR audit services.
-            </p>
-            
             <p className="text-gray-500 mb-8 leading-relaxed border-l-4 border-orange-500 pl-4 italic">
               We are an association of experienced HR Managers, Advocates, Legal consultants 
               and qualified professionals with rich expertise in Labour Laws & Statutory Compliance.
@@ -107,6 +107,27 @@ const AboutPreview = () => {
               ))}
             </div>
 
+            {/* Highlights Stats */}
+            <div className="grid grid-cols-3 gap-4 mb-8">
+              {highlights.map((item, idx) => {
+                const Icon = item.icon;
+                return (
+                  <div 
+                    key={idx}
+                    className="text-center p-4 bg-gradient-to-br from-orange-50 to-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 transform hover:-translate-y-1"
+                    data-aos="fade-up"
+                    data-aos-delay={200 + idx * 100}
+                  >
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center mx-auto mb-3 shadow-md">
+                      <Icon className="text-white text-xl" />
+                    </div>
+                    <h4 className="text-xl font-bold text-gray-800">{item.title}</h4>
+                    <p className="text-xs text-gray-500">{item.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+
             <button className="group px-8 py-3.5 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-full font-semibold hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 inline-flex items-center gap-2 shadow-lg">
               <span>Discover More About Us</span>
               <HiArrowRight className="text-sm group-hover:translate-x-1 transition-transform duration-300" />
@@ -115,8 +136,6 @@ const AboutPreview = () => {
 
           {/* Right Content - Full Image with Premium Design */}
           <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
-           
-
             {/* Main Image */}
             <div 
               className="flex justify-center items-center"
@@ -132,7 +151,7 @@ const AboutPreview = () => {
             </div>
 
             {/* Core Values - Modern horizontal layout */}
-            <div className="mt-8 pt-6 border-t-2 border-gray-100">
+            {/* <div className="mt-8 pt-6 border-t-2 border-gray-100">
               <p className="text-center text-sm font-semibold text-gray-600 mb-4 uppercase tracking-wider">Our Core Values</p>
               <div className="grid grid-cols-3 gap-3">
                 {coreValues.map((value, idx) => {
@@ -155,7 +174,7 @@ const AboutPreview = () => {
                   );
                 })}
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

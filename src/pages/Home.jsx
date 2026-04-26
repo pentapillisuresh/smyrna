@@ -35,15 +35,17 @@ const Home = () => {
   return (
     <div className="bg-dark">
       <HeroSection />
+       <AboutPreview />
       <ServicesSection />
-      <AboutPreview />
+     
       <Industries/>
        <Ourprocess/>
       
       <ClientsSection />
        <WhyChooseUs/>
-      <CTABanner />
+    
       <Testimonials/>
+        <CTABanner />
      
     </div>
   );

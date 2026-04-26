@@ -36,7 +36,7 @@ const ServicesSection = () => {
       icon: FaClipboardCheck,
       title: 'Statutory Compliance Management',
       description: 'End-to-end compliance management under Shops & Establishment Act, Contract Labour Act, BOCW Act, Factories Act, PF Act, ESI Act, Labour Welfare Fund Act, and all other labour legislations. We handle registrations, renewals, returns filing, and maintenance of statutory registers.',
-      bgImage: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=600&fit=crop',
+      bgImage: './images/service2.jpg',
       aosDelay: 100
     },
     {
@@ -50,21 +50,21 @@ const ServicesSection = () => {
       icon: FaGavel,
       title: 'Labour Law Advisory & Consulting',
       description: 'Expert legal advisory on labour enactments, display of abstracts, periodical returns filing, register maintenance, attending labour officer visits, updating management on latest amendments, circulars & notifications, and creating monthly compliance trackers.',
-      bgImage: 'https://images.unsplash.com/photo-1589391886645-d1b6d1c1e6e0?w=800&h=600&fit=crop',
+      bgImage: "./images/service10.avif",
       aosDelay: 0
     },
     {
       icon: FaUsers,
       title: 'HR & Payroll Management',
       description: 'Complete HR solutions including HR audit, policy implementation, HR systems establishment, HRMS & Payroll Software. Monthly preparation of PF & ESIC statements, challan generation, returns filing, and government liaison with cost-centre reports and MIS reports.',
-      bgImage: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop',
+      bgImage: './images/service11.avif',
       aosDelay: 100
     },
     {
       icon: FaHandshake,
       title: 'Government Liaison & Representation',
       description: 'Expert representation before Labour, PF, ESI authorities and Labour Courts. Handling labour department inspections, minimum wages cases, union strikes, and all statutory related notices. Liaison with Factories, Labour, ESIC and PF authorities successfully.',
-      bgImage: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop',
+      bgImage: './images/service12.avif',
       aosDelay: 200
     }
   ];
@@ -86,7 +86,10 @@ const ServicesSection = () => {
           data-aos="fade-up"
           data-aos-duration="800"
         >
-          <span className="text-orange-600 font-semibold text-sm uppercase tracking-wider">What We Offer</span>
+           <span className="text-xs tracking-[5px] text-orange-600 font-semibold mb-3 inline-block">
+           OUR SERVICES
+          </span>
+           <div className="w-16 h-0.5 bg-orange-500 mx-auto"></div>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2 mb-4">Comprehensive Compliance & Legal Solutions</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">Since 2008, providing quality services, ethics, professionalism and credibility to Hotel Industry, Retail Industry, Manufacturing Industries & ITES Companies</p>
         </div>

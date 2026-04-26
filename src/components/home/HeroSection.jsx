@@ -16,7 +16,7 @@ const Hero = () => {
   const banners = [
     {
       id: 1,
-      image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1600&h=900&fit=crop',
+      image: './images/payroll.jpg',
       title: 'Smyrna Consulting Solutions',
       subtitle: 'Since 2008 — Excellence in Compliance & Legal Consultancy',
       description: 'Trusted by 70+ clients across India for Statutory Audits, HR Solutions & Labour Law Compliance',
@@ -24,7 +24,7 @@ const Hero = () => {
     },
     {
       id: 2,
-      image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&h=900&fit=crop',
+      image: './images/image2.jpg',
       title: 'Expert Legal Consultancy',
       subtitle: 'End-to-End Statutory Compliance Solutions',
       description: 'From registrations to renewals, audits to advisory — we handle all labour laws and statutory requirements',
@@ -32,7 +32,7 @@ const Hero = () => {
     },
     {
       id: 3,
-      image: 'https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=1600&h=900&fit=crop',
+      image: './images/image1.jpg',
       title: 'HR Audit & Payroll Solutions',
       subtitle: 'Streamline Your HR Operations',
       description: 'HRMS software, payroll management, and comprehensive HR audits for hotels, retail, manufacturing & ITES',
@@ -40,7 +40,7 @@ const Hero = () => {
     },
     {
       id: 4,
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1600&h=900&fit=crop',
+      image: './images/image3.jpg',
       title: 'Pan India Compliance Services',
       subtitle: 'South India Specialists — Telangana, AP, Karnataka, TN, Kerala',
       description: 'Registration & Renewals | Monthly Compliance | Audits | Government Liaison | Labour Law Advisory',
@@ -48,7 +48,7 @@ const Hero = () => {
     },
     {
       id: 5,
-      image: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&h=900&fit=crop',
+      image: './images/payroll1.jpg',
       title: 'Statutory Audit & Due Diligence',
       subtitle: 'Multi-layered Compliance Checks',
       description: 'Monthly, quarterly & yearly audits | Corrective measures | Compliance score improvement',
@@ -56,7 +56,7 @@ const Hero = () => {
     },
     {
       id: 6,
-      image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1600&h=900&fit=crop',
+      image: './images/image5.jpg',
       title: 'Trusted by Industry Leaders',
       subtitle: 'TATA Projects | CtrlS | Hero Future Energies | Motilal Oswal',
       description: 'Join 70+ prestigious clients who rely on Smyrna for statutory compliance and legal excellence',
