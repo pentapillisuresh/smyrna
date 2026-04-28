@@ -99,9 +99,9 @@ const WhyChooseUs = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent lg:hidden"></div>
         </div>
 
-        {/* Right Side: Content Area */}
+        {/* Right Side: Content Area with White Background */}
         <div 
-          className={`lg:w-1/2 bg-[#0f172a] flex items-center transition-all duration-1000 ease-out delay-200 ${
+          className={`lg:w-1/2 bg-white flex items-center transition-all duration-1000 ease-out delay-200 ${
             animated ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
           }`}
         >
@@ -125,7 +125,7 @@ const WhyChooseUs = () => {
 
               {/* Title */}
               <h2 
-                className={`text-2xl md:text-3xl font-bold text-white mb-2 leading-tight transition-all duration-700 delay-400 ${
+                className={`text-2xl md:text-3xl font-bold text-gray-900 mb-2 leading-tight transition-all duration-700 delay-400 ${
                   animated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
               >
@@ -134,7 +134,7 @@ const WhyChooseUs = () => {
 
               {/* Description */}
               <p 
-                className={`text-gray-400 mb-6 text-sm leading-relaxed transition-all duration-700 delay-500 ${
+                className={`text-gray-600 mb-6 text-sm leading-relaxed transition-all duration-700 delay-500 ${
                   animated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
               >
@@ -157,10 +157,10 @@ const WhyChooseUs = () => {
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-white font-semibold text-xs mb-0.5 group-hover:text-orange-400 transition-colors">
+                      <h3 className="text-gray-800 font-semibold text-xs mb-0.5 group-hover:text-orange-500 transition-colors">
                         {feature.title}
                       </h3>
-                      <p className="text-gray-400 text-[11px] leading-relaxed group-hover:text-gray-300 transition-colors">
+                      <p className="text-gray-500 text-[11px] leading-relaxed group-hover:text-gray-600 transition-colors">
                         {feature.desc}
                       </p>
                     </div>
@@ -170,21 +170,21 @@ const WhyChooseUs = () => {
 
               {/* Stats Footer */}
               <div 
-                className={`mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-5 transition-all duration-700 delay-1000 ${
+                className={`mt-6 pt-5 border-t border-gray-200 flex flex-wrap gap-5 transition-all duration-700 delay-1000 ${
                   animated ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                 }`}
               >
                 <div className="group cursor-pointer">
-                  <p className="text-white text-xl font-bold group-hover:text-orange-400 transition-colors">70+</p>
-                  <p className="text-gray-500 text-[10px] uppercase tracking-wider">Trusted Clients</p>
+                  <p className="text-gray-900 text-xl font-bold group-hover:text-orange-500 transition-colors">70+</p>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wider">Trusted Clients</p>
                 </div>
                 <div className="group cursor-pointer">
-                  <p className="text-white text-xl font-bold group-hover:text-orange-400 transition-colors">5+</p>
-                  <p className="text-gray-500 text-[10px] uppercase tracking-wider">States Covered</p>
+                  <p className="text-gray-900 text-xl font-bold group-hover:text-orange-500 transition-colors">5+</p>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wider">States Covered</p>
                 </div>
                 <div className="group cursor-pointer">
-                  <p className="text-white text-xl font-bold group-hover:text-orange-400 transition-colors">100%</p>
-                  <p className="text-gray-500 text-[10px] uppercase tracking-wider">Compliance Rate</p>
+                  <p className="text-gray-900 text-xl font-bold group-hover:text-orange-500 transition-colors">100%</p>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wider">Compliance Rate</p>
                 </div>
               </div>
 

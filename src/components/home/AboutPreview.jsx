@@ -70,7 +70,7 @@ const AboutPreview = () => {
             ABOUT US
           </span>
           <div className="w-16 h-0.5 bg-orange-500 mx-auto mb-4"></div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-4xl font-bold text-gray-800 mb-4 leading-tight">
             Your Strategic Partner in <br />
             <span className="text-orange-600 relative inline-block">
               Statutory Compliance
